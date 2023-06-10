@@ -15,7 +15,18 @@
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
         <link rel="manifest" href="/site.webmanifest">
+        <!-- Canonical Tag -->
+        <link rel="canonical" href="{{ request()->fullUrl() }}" />
         <!-- Scripts -->
+        @if(isset($postcards))
+             @if($postcards->currentPage() > 1)                    
+                <link rel="prev" href="{{ $postcards->previousPageUrl() }}" />
+             @endif
+             @if($postcards->hasMorePages())
+                <link rel="next" href="{{ $postcards->nextPageUrl() }}" />
+             @endif  
+        @endif 
+
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="h-full">
