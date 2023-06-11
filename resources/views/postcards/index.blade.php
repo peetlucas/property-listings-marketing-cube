@@ -15,7 +15,6 @@
         </div>
       </div>
     </nav>
-
     <!-- Page heading -->
     <header class="bg-gray-50 py-8">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 xl:flex xl:items-center xl:justify-between">
@@ -34,6 +33,9 @@
 
       </div>
     </header>
+    
+    <!-- Search bar -->
+    @include('partials._search')
 
     <main class="pt-8 pb-16">
       <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">

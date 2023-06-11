@@ -12,9 +12,9 @@ class PostcardController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
+    { 
         return view('postcards.index', [
-            'postcards' => Postcard::paginate(20)
+            'postcards' => Postcard::latest()->filter(request(['search']))->paginate(20)
         ]);
     }
 
