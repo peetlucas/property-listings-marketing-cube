@@ -46,12 +46,16 @@
 	      	<div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
 			    <div class="mx-auto max-w-3xl">
 			      <div class="flex items-center">
-			        <div>
-			          <h1 class="text-2xl font-bold text-gray-900">{{ $postcard->title }}</h1>
-			          <p class="text-sm font-medium text-gray-500">Available on <time datetime="{{ $postcard->online_at }}">{{ $postcard->online_at }}</time> to <time datetime="{{ $postcard->offline_at }}">{{ $postcard->offline_at }}</time></p>
-			          <p>Author: {{ $postcard->user->name }}</p>
-			          <p>Price: R{{ $postcard->price }} </p>
-			        </div>
+					<div class="flex">
+						<img class="hidden w-48 mr-6 md:block"
+						src="https://picsum.photos/400/200?random={{ $postcard->id }}" alt="" />					
+						<div>
+						<h1 class="text-2xl font-bold text-gray-900">{{ $postcard->title }}</h1>
+						<p class="text-sm font-medium text-gray-500">Available on <time datetime="{{ $postcard->online_at }}">{{ $postcard->online_at }}</time> to <time datetime="{{ $postcard->offline_at }}">{{ $postcard->offline_at }}</time></p>
+						<p>Author: {{ $postcard->user->name }}</p>
+						<p>Price: R{{ $postcard->price }} </p>
+						</div>
+					</div>
 			      </div>
 			    </div>
 		    </div>
