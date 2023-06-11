@@ -9,9 +9,10 @@ class Postcard extends Model
 {
     use HasFactory;
 
+    // Relationship To User
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function team()

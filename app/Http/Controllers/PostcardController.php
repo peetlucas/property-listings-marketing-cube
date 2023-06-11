@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePostcardRequest;
 use App\Http\Requests\UpdatePostcardRequest;
 use App\Models\Postcard;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PostcardController extends Controller
 {
@@ -14,7 +16,7 @@ class PostcardController extends Controller
     public function index()
     {
         return view('postcards.index', [
-            'postcards' => Postcard::paginate(20)
+            'postcards' => Postcard::paginate(10)
         ]);
     }
 
@@ -23,46 +25,83 @@ class PostcardController extends Controller
      */
     public function create()
     {
-        //
+        return view('postcards.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StorePostcardRequest $request)
-    {
-        //
+    //Show single postcard
+        public function show(Postcard $postcard) {
+            return view('postcards.show', [
+                'postcard' => $postcard
+            ]);
+        }   
+
+    // Store Postcard Data
+    public function store(Request $request) {
+        $formFields = $request->validate([
+            'title' => 'required',            
+            'price' => 'required',
+            'online_at' => 'required',
+            'offline_at' => 'required',
+            'is_draft' => 'required'
+            
+        ]);    
+
+        if($request->hasFile('photo')) {
+            $formFields['photo'] = $request->file('photo')->store('photo', 'public');
+        }
+
+        $formFields['user_id'] = auth()->id();
+
+        Postcard::create($formFields);
+
+        return redirect('/')->with('message', 'Postcard created successfully!');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Postcard $postcard)
-    {
-        return view('postcards.show', compact('postcard'));
+    // Show Edit Form
+    public function edit(Postcard $postcard) {
+        return view('postcards.edit', ['postcard' => $postcard]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Postcard $postcard)
-    {
-        //
+    // Update Postcard Data
+    public function update(Request $request, Postcard $postcard) {
+        // Make sure logged in user is owner
+        if($postcard->user_id != auth()->id()) {
+            abort(403, 'Unauthorized Action');
+        }
+        
+        $formFields = $request->validate([
+            'title' => 'required',            
+            'price' => 'required',
+            'online_at' => 'required',
+            'offline_at' => 'required',
+            'is_draft' => 'required'
+        ]);
+
+        if($request->hasFile('photo')) {
+            $formFields['photo'] = $request->file('photo')->store('photo', 'public');
+        }
+
+        $postcard->update($formFields);
+
+        return back()->with('message', 'Postcard updated successfully!');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdatePostcardRequest $request, Postcard $postcard)
-    {
-        //
+    // Delete Postcard
+    public function destroy(Postcard $postcard) {
+        // Make sure logged in user is owner
+        if($postcard->user_id != auth()->id()) {
+            abort(403, 'Unauthorized Action');
+        }
+        
+        if($postcard->photo && Storage::disk('public')->exists($postcard->photo)) {
+            Storage::disk('public')->delete($postcard->photo);
+        }
+        $postcard->delete();
+        return redirect('/')->with('message', 'Postcard deleted successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Postcard $postcard)
-    {
-        //
+    // Manage Postcards
+    public function manage() {
+        return view('postcards.manage', ['postcards' => auth()->user()->get()]);
     }
 }
