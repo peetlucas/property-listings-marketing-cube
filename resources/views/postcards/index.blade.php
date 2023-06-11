@@ -41,33 +41,39 @@
         <ul role="list" class="mt-5 divide-y divide-gray-200 border-t border-gray-200 sm:mt-0 sm:border-t-0">
           @forelse ($postcards as $postcard)
             <li>
-              <a href="{{ route('postcards.show', $postcard) }}" class="group block">
-                <div class="flex items-center py-5 px-4 sm:py-6 sm:px-0">
-                  <div class="flex min-w-0 flex-1 items-center">
-                    
-                    <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
-                      <div>
-                        <p class="truncate text-sm font-medium">{{ $postcard->title }}</p>
-                        <p class="mt-2 flex items-center text-sm text-gray-500">
-                          <span class="truncate">{{ $postcard->user->name }}</span>
-                        </p>
-                      </div>
-                      <div class="hidden md:block">
-                        <div>
-                          <p class="text-sm text-gray-900">
-                            R{{ $postcard->price }}
-                          </p>
+              <div class="flex">
+                <img class="hidden w-48 mr-6 md:block"
+                  src="https://picsum.photos/400/200?random={{ $postcard->id }}" alt="" />
+                <div>
+                  <a href="{{ route('postcards.show', $postcard) }}" class="group block">
+                    <div class="flex items-center py-5 px-4 sm:py-6 sm:px-0">
+                      <div class="flex min-w-0 flex-1 items-center">
+                        
+                        <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
+                          <div>
+                            <p class="truncate text-sm font-medium">{{ $postcard->title }}</p>
+                            <p class="mt-2 flex items-center text-sm text-gray-500">
+                              <span class="truncate">{{ $postcard->user->name }}</span>
+                            </p>
+                          </div>
+                          <div class="hidden md:block">
+                            <div>
+                              <p class="text-sm text-gray-900">
+                                R{{ $postcard->price }}
+                              </p>
+                            </div>
+                          </div>
                         </div>
                       </div>
+                      <div>
+                        <svg class="h-5 w-5 text-gray-400 group-hover:text-gray-700" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+                        </svg>
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <svg class="h-5 w-5 text-gray-400 group-hover:text-gray-700" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-                    </svg>
-                  </div>
+                  </a>
                 </div>
-              </a>
+              </div>
             </li>
           @empty
             <p>No postcards</p>
