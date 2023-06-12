@@ -19,6 +19,7 @@
         <!-- Canonical Tag -->
         <link rel="canonical" href="{{ request()->fullUrl() }}" />
         <!-- Scripts -->
+
         @if(isset($postcards))
              @if($postcards->currentPage() > 1)                    
                 <link rel="prev" href="{{ $postcards->previousPageUrl() }}" />
@@ -29,6 +30,7 @@
         @endif 
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     </head>
     <body class="h-full">
         <div class="font-sans text-gray-900 antialiased">
