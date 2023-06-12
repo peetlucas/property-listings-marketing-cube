@@ -13,8 +13,10 @@ class PostcardController extends Controller
      */
     public function index()
     {
+        $isDraft = 0;
         return view('postcards.index', [
-            'postcards' => Postcard::paginate(20)
+            'postcards' => Postcard::where('is_draft', '=', $isDraft)->paginate(20)
+                            
         ]);
     }
 

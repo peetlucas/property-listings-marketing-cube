@@ -18,6 +18,7 @@
         
         <!-- Canonical Tag -->
         <link rel="canonical" href="{{ request()->fullUrl() }}" />
+
         <!-- Scripts -->
 
         @if(isset($postcards))
