@@ -45,7 +45,14 @@ class PostcardController extends Controller
      */
     public function show(Postcard $postcard)
     {
-        return view('postcards.show', compact('postcard'));
+        // $online_postcard = (Carbon::parse(date('Y-m-d H:s:i', strtotime($postcard->online_at)))
+        //             ->diffInSeconds(Carbon::parse(date('Y-m-d H:s:i', strtotime($postcard->offline_at))), false));
+        
+        if(!$postcard) {
+            abort(410, 'Resource is offline!');            
+        }else{
+            return view('postcards.show', compact('postcard'));
+        }        
     }
 
     /**
