@@ -33,7 +33,10 @@ Route::controller(PostcardController::class)->group(function () {
     Route::delete('/postcards/{postcard}', [PostcardController::class, 'destroy'])->middleware('auth');
 
     // Manage Postcards
-    Route::get('/postcards/manage', [PostcardController::class, 'manage'])->name('postcards.manage')->middleware('auth');
+    // Route::get('/postcards/manage', [PostcardController::class, 'manage'])->name('postcards.manage')->middleware('auth');
+    
+    // Manage Postcards
+    Route::get('/postcards.manage', [PostcardController::class, 'manage'])->name('dashboard')->middleware('auth');
     
     // Single Postcard
     Route::get('/postcards/{postcard}', 'show')->name('postcards.show');
@@ -45,7 +48,7 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('postcards.manage');
     })->name('dashboard');
 
     

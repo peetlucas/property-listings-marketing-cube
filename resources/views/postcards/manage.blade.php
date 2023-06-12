@@ -26,8 +26,16 @@
               <button class="text-red-500"><i class="fa-solid fa-trash"></i> Delete</button>
             </form>
           </td>
-        </tr>
+        </tr>       
         @endforeach
+
+         <tr>
+          <td>
+            <div class="mt-6 p-4">
+              {{$postcards->links()}}
+            </div>
+          </td>
+        </tr>
         @else
         <tr class="border-gray-300">
           <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">

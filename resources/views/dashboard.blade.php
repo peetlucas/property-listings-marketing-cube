@@ -1,15 +1,50 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+<x-layout>
+  <x-card class="p-10">
+    <header>
+      <h1 class="text-3xl text-center font-bold my-6 uppercase">
+        Manage Postcards
+      </h1>
+    </header>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <x-welcome />
+    <table class="w-full table-auto rounded-sm">
+      <tbody>
+        @unless($postcards->isEmpty())
+        @foreach($postcards as $postcard)
+        <tr class="border-gray-300">
+          <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
+            <a href="/postcards/{{$postcard->id}}"> {{$postcard->title}} </a>
+          </td>
+          <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
+            <a href="/postcards/{{$postcard->id}}/edit" class="text-blue-400 px-6 py-2 rounded-xl"><i
+                class="fa-solid fa-pen-to-square"></i>
+              Edit</a>
+          </td>
+          <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
+            <form method="POST" action="/postcards/{{$postcard->id}}">
+              @csrf
+              @method('DELETE')
+              <button class="text-red-500"><i class="fa-solid fa-trash"></i> Delete</button>
+            </form>
+          </td>
+        </tr>       
+        @endforeach
+
+         <tr>
+          <td>
+            <div class="mt-6 p-4">
+              {{$postcards->links()}}
             </div>
-        </div>
-    </div>
-</x-app-layout>
+          </td>
+        </tr>
+        @else
+        <tr class="border-gray-300">
+          <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
+            <p class="text-center">No Postcards Found!</p>
+          </td>
+        </tr>
+        @endunless
+
+      </tbody>
+    </table>
+  </x-card>
+</x-layout>
