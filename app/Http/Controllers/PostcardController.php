@@ -5,18 +5,24 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePostcardRequest;
 use App\Http\Requests\UpdatePostcardRequest;
 use App\Models\Postcard;
+use Carbon\Carbon;
 
 class PostcardController extends Controller
 {
     /**
      * Display a listing of the resource.
-     */
+     * 
+     */   
     public function index()
     {
         $isDraft = 0;
         return view('postcards.index', [
-            'postcards' => Postcard::where('is_draft', '=', $isDraft)->paginate(20)
-                            
+
+            'postcards' => Postcard::where('is_draft', '=', $isDraft)
+                    ->where((Carbon::parse(date('Y-m-d H:s:i', strtotime('online_at')))
+                    ->diffInSeconds(Carbon::parse(date('Y-m-d H:s:i', strtotime('offline_at'))), false)), '>=', '0')
+                    ->paginate(10)
+
         ]);
     }
 
@@ -41,7 +47,14 @@ class PostcardController extends Controller
      */
     public function show(Postcard $postcard)
     {
-        return view('postcards.show', compact('postcard'));
+        // $online_postcard = (Carbon::parse(date('Y-m-d H:s:i', strtotime($postcard->online_at)))
+        //             ->diffInSeconds(Carbon::parse(date('Y-m-d H:s:i', strtotime($postcard->offline_at))), false));
+        
+        if(!$postcard) {
+            abort(410, 'Resource is offline!');            
+        }else{
+            return view('postcards.show', compact('postcard'));
+        }        
     }
 
     /**
