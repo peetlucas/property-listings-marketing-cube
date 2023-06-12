@@ -65,9 +65,9 @@ class PostcardController extends Controller
     // Update Postcard Data
     public function update(Request $request, Postcard $postcard) {
         // Make sure logged in user is owner
-        if($postcard->user_id != auth()->id()) {
-            abort(403, 'Unauthorized Action');
-        }
+        // if($postcard->user_id != auth()->id()) {
+        //     abort(403, 'Unauthorized Action');
+        // }
         
         $formFields = $request->validate([
             'title' => 'required',            
@@ -89,9 +89,9 @@ class PostcardController extends Controller
     // Delete Postcard
     public function destroy(Postcard $postcard) {
         // Make sure logged in user is owner
-        if($postcard->user_id != auth()->id()) {
-            abort(403, 'Unauthorized Action');
-        }
+        // if($postcard->user_id != auth()->id()) {
+        //     abort(403, 'Unauthorized Action');
+        // }
         
         if($postcard->photo && Storage::disk('public')->exists($postcard->photo)) {
             Storage::disk('public')->delete($postcard->photo);
@@ -102,6 +102,8 @@ class PostcardController extends Controller
 
     // Manage Postcards
     public function manage() {
-        return view('postcards.manage', ['postcards' => auth()->user()->get()]);
+        //return view('postcards.manage', ['postcards' => auth()->user()->get()]);
+        return view('postcards.manage', ['postcards' => Postcard::paginate(10)]);
     }
+    
 }
