@@ -23,6 +23,7 @@ class PostcardController extends Controller
                     ->diffInSeconds(Carbon::parse(date('Y-m-d H:s:i', strtotime('offline_at'))), false)), '>=', '0')
                     ->paginate(10)
 
+
         ]);
     }
 
