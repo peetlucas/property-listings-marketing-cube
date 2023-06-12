@@ -56,5 +56,16 @@
 			    </div>
 		    </div>
 		</main>
+		<script type="application/ld+json">
+		{
+			"@context":"https://schema.org/",
+			"@type":"Product",
+			"title":"Kilimani Residential Apartment",
+			"author":"Peter Shitote",
+			"datePosted" : "2023-06-13",
+			"validThrough" : "2023-06-16",
+			"price":26500000,
+		}
+		</script>
 	</div>
 </x-guest-layout>
