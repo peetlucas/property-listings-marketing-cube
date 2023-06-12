@@ -11,22 +11,16 @@ class PostcardController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * ->orWhere('online_at->diffInSeconds(offline_at)', '>=', 0)
      * 
-     *  'postcards' => Postcard::where('is_draft', '=', $isDraft)
-     *             ->where('online_at', '>=','offline_at')->paginate(20)
-     * 
-     * 'postcards' => Postcard::where('is_draft', '=', $isDraft)
-     *              ->where('online_at', '>=', date('Y-m-d').' 00:00:00')->paginate(20)
      */   
     public function index()
     {
         $isDraft = 0;
         return view('postcards.index', [
             'postcards' => Postcard::where('is_draft', '=', $isDraft)
-                    ->where((Carbon::parse(date('Y-m-d', strtotime('online_at')))
-                    ->diffInSeconds(Carbon::parse(date('Y-m-d', strtotime('offline_at'))))), '>=', '0')
-                    ->paginate(20)
+                    ->where((Carbon::parse(date('Y-m-d H:s:i', strtotime('online_at')))
+                    ->diffInSeconds(Carbon::parse(date('Y-m-d H:s:i', strtotime('offline_at'))), false)), '>=', '0')
+                    ->paginate(10)
         ]);
     }
 
