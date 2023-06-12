@@ -55,6 +55,6 @@
 			      </div>
 			    </div>
 		    </div>
-		</main>
-	</div>
+		</main>	
+	</div>	
 </x-guest-layout>
