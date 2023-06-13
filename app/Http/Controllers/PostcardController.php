@@ -39,6 +39,10 @@ class PostcardController extends Controller
      */
     public function show(Postcard $postcard)
     {
+        $model = Postcard::withTrashed()->findOrFail($postcard);
+
+        abort_if($model->trashed(), redirect('/', 301)); 
+        
         return view('postcards.show', compact('postcard'));
     }
 
