@@ -20,6 +20,15 @@ class Postcard extends Model
     ];
 
     // Relationship To User
+
+    public function scopeFilter($query, array $filters) {
+        
+        if($filters['search'] ?? false) {
+            $query->where('title', 'like', '%' . request('search') . '%');
+        }
+    }
+
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

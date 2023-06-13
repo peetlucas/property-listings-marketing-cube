@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
   <meta charset="UTF-8" />
@@ -9,9 +10,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
     integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  @stack('style')
+
+  <!-- Canonical url -->
+  <link rel="canonical" href="{{request()->fullUrl()}}">
   <script src="//unpkg.com/alpinejs" defer></script>
   <script src="https://cdn.tailwindcss.com"></script>
-  @stack('style')
+
   <script>
     tailwind.config = {
         theme: {
@@ -23,12 +29,14 @@
         },
       }
   </script>
-  <title>Property Listings</title>
+  <title>Postcards Listings</title>
 </head>
 
 <body class="mb-48">
   <nav class="flex justify-between items-center mb-4">
-    <a href="/"><img class="h-8 w-auto" src="https://www.ringier.com/wp-content/themes/ringiercorporate/assets/images/ringier-logo.svg" alt="Ringier Logo"></a>
+
+    <a href="/"><img class="h-8 w-auto mt-2" src="https://www.ringier.com/wp-content/themes/ringiercorporate/assets/images/ringier-logo.svg" alt="Ringier Logo" class="logo" /></a>
+
     <ul class="flex space-x-6 mr-6 text-lg">
       @auth
       <li>
@@ -62,12 +70,14 @@
     {{$slot}}
   </main>
   <footer
+
     class="fixed bottom-0 left-0 w-full flex items-center justify-start font-bold bg-gray-600 text-white h-24 mt-24 opacity-90 md:justify-center">
     <p class="ml-2">Copyright &copy; 2023, All Rights reserved</p>    
   </footer>
 
   <x-flash-message />
    @stack('scripts')
+
 </body>
 
 </html>

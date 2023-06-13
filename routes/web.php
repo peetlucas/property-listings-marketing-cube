@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PostcardController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostcardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::controller(PostcardController::class)->group(function () {
+
     Route::get('/', 'index')->name('postcards.index');  
     
     // Store Postcard Data
@@ -38,7 +40,7 @@ Route::controller(PostcardController::class)->group(function () {
     // Manage Postcards
     Route::get('/postcards/manage', [PostcardController::class, 'manage'])->name('postcards.manage')->middleware('auth');
     
-    // Single Postcard
+    // Single Postcard   
     Route::get('/postcards/{postcard}', 'show')->name('postcards.show');
 });
 
