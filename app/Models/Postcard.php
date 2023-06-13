@@ -9,6 +9,18 @@ class Postcard extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',            
+        'price',
+        'online_at',
+        'offline_at',
+        'is_draft',
+        'user_id',
+        'team_id'
+    ];
+
+    // Relationship To User
+
     public function scopeFilter($query, array $filters) {
         
         if($filters['search'] ?? false) {
@@ -16,9 +28,10 @@ class Postcard extends Model
         }
     }
 
+
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function team()
