@@ -44,7 +44,7 @@
     @endforeach
 
     @else
-      <p>No properties found!</p>
+      <p>No Postcards Found!</p>
     @endunless
 
     <!-- Pagination -->
