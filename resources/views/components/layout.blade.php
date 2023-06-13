@@ -11,6 +11,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="//unpkg.com/alpinejs" defer></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  @stack('style')
   <script>
     tailwind.config = {
         theme: {
@@ -27,7 +28,7 @@
 
 <body class="mb-48">
   <nav class="flex justify-between items-center mb-4">
-    <a href="/"><img class="w-24" src="{{asset('images/logo.png')}}" alt="" class="logo" /></a>
+    <a href="/"><img class="h-8 w-auto" src="https://www.ringier.com/wp-content/themes/ringiercorporate/assets/images/ringier-logo.svg" alt="Ringier Logo"></a>
     <ul class="flex space-x-6 mr-6 text-lg">
       @auth
       <li>
@@ -61,13 +62,12 @@
     {{$slot}}
   </main>
   <footer
-    class="fixed bottom-0 left-0 w-full flex items-center justify-start font-bold bg-laravel text-white h-24 mt-24 opacity-90 md:justify-center">
-    <p class="ml-2">Copyright &copy; 2023, All Rights reserved</p>
-
-    <a href="/postcards/create" class="absolute top-1/3 right-10 bg-black text-white py-2 px-5">Add New Property</a>
+    class="fixed bottom-0 left-0 w-full flex items-center justify-start font-bold bg-gray-600 text-white h-24 mt-24 opacity-90 md:justify-center">
+    <p class="ml-2">Copyright &copy; 2023, All Rights reserved</p>    
   </footer>
 
   <x-flash-message />
+   @stack('scripts')
 </body>
 
 </html>

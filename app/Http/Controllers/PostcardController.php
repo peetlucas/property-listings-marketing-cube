@@ -39,11 +39,8 @@ class PostcardController extends Controller
     public function store(Request $request) {
         $formFields = $request->validate([
             'title' => 'required',            
-            'price' => 'required',
-            'online_at' => 'required',
-            'offline_at' => 'required',
-            'is_draft' => 'required'
-            
+            'price' => 'required',           
+            'is_draft' => 'required'            
         ]);    
 
         if($request->hasFile('photo')) {
@@ -51,10 +48,11 @@ class PostcardController extends Controller
         }
 
         $formFields['user_id'] = auth()->id();
+        $formFields['team_id'] = auth()->id();
 
         Postcard::create($formFields);
 
-        return redirect('/')->with('message', 'Postcard created successfully!');
+        return redirect('/postcards/manage')->with('message', 'Postcard created successfully!');
     }
 
     // Show Edit Form
@@ -64,16 +62,10 @@ class PostcardController extends Controller
 
     // Update Postcard Data
     public function update(Request $request, Postcard $postcard) {
-        // Make sure logged in user is owner
-        // if($postcard->user_id != auth()->id()) {
-        //     abort(403, 'Unauthorized Action');
-        // }
-        
+               
         $formFields = $request->validate([
             'title' => 'required',            
-            'price' => 'required',
-            'online_at' => 'required',
-            'offline_at' => 'required',
+            'price' => 'required',            
             'is_draft' => 'required'
         ]);
 
@@ -87,17 +79,13 @@ class PostcardController extends Controller
     }
 
     // Delete Postcard
-    public function destroy(Postcard $postcard) {
-        // Make sure logged in user is owner
-        // if($postcard->user_id != auth()->id()) {
-        //     abort(403, 'Unauthorized Action');
-        // }
+    public function destroy(Postcard $postcard) {        
         
         if($postcard->photo && Storage::disk('public')->exists($postcard->photo)) {
             Storage::disk('public')->delete($postcard->photo);
         }
         $postcard->delete();
-        return redirect('/')->with('message', 'Postcard deleted successfully');
+        return redirect('/postcards/manage')->with('message', 'Postcard deleted successfully');
     }
 
     // Manage Postcards

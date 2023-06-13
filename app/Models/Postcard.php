@@ -9,6 +9,16 @@ class Postcard extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',            
+        'price',
+        'online_at',
+        'offline_at',
+        'is_draft',
+        'user_id',
+        'team_id'
+    ];
+
     // Relationship To User
     public function user()
     {

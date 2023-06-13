@@ -2,48 +2,26 @@
   <x-card class="p-10">
     <header>
       <h1 class="text-3xl text-center font-bold my-6 uppercase">
-        Manage Postcards
+        Management Dashboard
       </h1>
     </header>
-
+    <p class="text-red-600 font-bold my-6 uppercase">For the moment only the postcards button is working. Try it!</p>
     <table class="w-full table-auto rounded-sm">
-      <tbody>
-        @unless($postcards->isEmpty())
-        @foreach($postcards as $postcard)
+      <tbody>       
         <tr class="border-gray-300">
           <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
-            <a href="/postcards/{{$postcard->id}}"> {{$postcard->title}} </a>
+            <a href="/postcards/manage" class="mr-1 bg-pink-800 text-right text-white py-8 px-6"><i class="fa-solid fa-image">  Postcards</i></a>
           </td>
           <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
-            <a href="/postcards/{{$postcard->id}}/edit" class="text-blue-400 px-6 py-2 rounded-xl"><i
-                class="fa-solid fa-pen-to-square"></i>
-              Edit</a>
+            <a href="#" class="mr-1 bg-blue-700 text-right text-white py-8 px-12"><i class="fa-solid fa-people-group"> Teams</i></a>
           </td>
           <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
-            <form method="POST" action="/postcards/{{$postcard->id}}">
-              @csrf
-              @method('DELETE')
-              <button class="text-red-500"><i class="fa-solid fa-trash"></i> Delete</button>
-            </form>
+            <a href="#" class="mr-1 bg-orange-700 text-right text-white py-8 px-16"><i class="fa-solid fa-user"> Users</i></a>
           </td>
-        </tr>       
-        @endforeach
-
-         <tr>
-          <td>
-            <div class="mt-6 p-4">
-              {{$postcards->links()}}
-            </div>
-          </td>
-        </tr>
-        @else
-        <tr class="border-gray-300">
           <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
-            <p class="text-center">No Postcards Found!</p>
+            <a href="#" class="mr-1 bg-green-700 text-right text-white py-8 px-12"><i class="fa-solid fa-envelope"> Emails</i></a>
           </td>
-        </tr>
-        @endunless
-
+        </tr>          
       </tbody>
     </table>
   </x-card>
