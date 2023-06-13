@@ -9,7 +9,7 @@ use App\Models\Postcard;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
-use Carbon\Carbon;>>>>>>> master
+use Carbon\Carbon;
 
 class PostcardController extends Controller
 {
@@ -22,11 +22,13 @@ class PostcardController extends Controller
         $isDraft = 0;
         return view('postcards.index', [
 
-            'postcards' => Postcard::where('is_draft', '=', $isDraft)
+            'postcards' => Postcard::latest()->filter(request(['search']))
+                    ->where('is_draft', '=', $isDraft)
                     ->where((Carbon::parse(date('Y-m-d H:s:i', strtotime('online_at')))
                     ->diffInSeconds(Carbon::parse(date('Y-m-d H:s:i', strtotime('offline_at'))), false)), '>=', '0')
-                    ->paginate(10)
+                    ->paginate(6)
         ]);
+         
     }
 
     /**
@@ -36,14 +38,7 @@ class PostcardController extends Controller
     {
         return view('postcards.create');
     }
-
-    //Show single postcard
-        public function show(Postcard $postcard) {
-            return view('postcards.show', [
-                'postcard' => $postcard
-            ]);
-        }   
-
+    
     // Store Postcard Data
     public function store(Request $request) {
         $formFields = $request->validate([
@@ -68,6 +63,7 @@ class PostcardController extends Controller
     // Show Edit Form
     public function edit(Postcard $postcard) {
         return view('postcards.edit', ['postcard' => $postcard]);
+    }
 
     /**
      * Display the specified resource.
@@ -81,7 +77,7 @@ class PostcardController extends Controller
         
         $online = Postcard::where((Carbon::parse(date('Y-m-d H:s:i', strtotime('online_at')))
                     ->diffInSeconds(Carbon::parse(date('Y-m-d H:s:i', strtotime('offline_at'))), false)), '>=', '0')
-                    ->paginate(10)
+                    ->paginate(10);
         
         abort_if(!$online, redirect('/', 410)->with('message', 'Resource is offline!'));  
       
@@ -117,9 +113,8 @@ class PostcardController extends Controller
     }
 
     // Manage Postcards
-    public function manage() {
-        //return view('postcards.manage', ['postcards' => auth()->user()->get()]);
-        return view('postcards.manage', ['postcards' => Postcard::paginate(10)]);
+    public function manage() {       
+        return view('postcards.manage', ['postcards' => Postcard::paginate(6)]);
     }
     
 }
