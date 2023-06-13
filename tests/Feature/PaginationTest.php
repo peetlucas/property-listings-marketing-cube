@@ -11,6 +11,7 @@ class PaginationTest extends TestCase
     /**
      * A basic feature test example.
      */
+
     public function test_pagination_home_page(): void
     {
         $response = $this->visit('/')
@@ -19,6 +20,6 @@ class PaginationTest extends TestCase
                     //$response->see('/?page=2');
 
         $response->assertStatus(200);        
-             
+
     }
 }
