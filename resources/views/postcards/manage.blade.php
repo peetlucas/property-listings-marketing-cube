@@ -4,12 +4,12 @@
        <table class="w-full table-auto rounded-sm">
         <tbody>
           <tr class="border-gray-300">
-              <td>
+              <td >
                 <h1 class="text-3xl text-left font-bold my-6 uppercase">
                   Manage Postcards
                 </h1>
               </td>          
-              <td>
+              <td class="text-end">
                 <a href="/postcards/create" class="mr-1 bg-black text-right text-white py-2 px-5 uppercase">Add New Postcard</a>
               </td>
           </tr>
