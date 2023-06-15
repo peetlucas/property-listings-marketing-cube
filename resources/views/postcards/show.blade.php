@@ -1,6 +1,6 @@
 <x-layout> 
 	<div class="mx-4">
-	 <a href="/" class="inline-block text-black ml-4 mb-4"><i class="fa-solid fa-arrow-left"></i> Back
+	 <a href="/postcards/manage" class="inline-block text-black ml-4 mb-4"><i class="fa-solid fa-arrow-left"></i> Back
   	</a>
 	    <!-- Page heading -->
 	    <header class="bg-gray-50 py-8">
