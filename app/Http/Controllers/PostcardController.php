@@ -26,7 +26,7 @@ class PostcardController extends Controller
                     ->where('is_draft', '=', $isDraft)
                     ->where((Carbon::parse(date('Y-m-d H:s:i', strtotime('online_at')))
                     ->diffInSeconds(Carbon::parse(date('Y-m-d H:s:i', strtotime('offline_at'))), false)), '>=', '0')
-                    ->paginate(6)
+                    ->paginate(5)
         ]);
          
     }
@@ -70,18 +70,30 @@ class PostcardController extends Controller
      */
     public function show(Postcard $postcard)
     {
-
-        $model = Postcard::withTrashed()->findOrFail($postcard);
-
-        abort_if($model->trashed(), redirect('/', 301)); 
-        
         $online = Postcard::where((Carbon::parse(date('Y-m-d H:s:i', strtotime('online_at')))
                     ->diffInSeconds(Carbon::parse(date('Y-m-d H:s:i', strtotime('offline_at'))), false)), '>=', '0')
-                    ->paginate(10);
+                    ->paginate(10);   
+
+         $model = Postcard::onlyTrashed()      
+                ->where('id', $postcard)
+                ->get();
         
-        abort_if(!$online, redirect('/', 410)->with('message', 'Resource is offline!'));  
-      
-        return view('postcards.show', compact('postcard'));
+         if (!$online) {
+            return redirect('/')->with('message', 'Resource is offline!');
+         } else if(!$model){
+            return redirect('/')->with('message', 'Resource deleted!');       
+         }
+
+         return view('postcards.show', compact('postcard'));
+
+        //abort_if(!$online, redirect('/', 410)->with('message', '410, Resource is offline!'));
+              
+        // if (!$model) {
+        //     return view('postcards.show', compact('postcard'));
+        // } else{           
+        //     return redirect('/')->with('message', 'Resource deleted!');
+        // }
+        // abort_if($model->trashed(), redirect('/', 301));    
     }
 
     // Update Postcard Data
@@ -114,7 +126,10 @@ class PostcardController extends Controller
 
     // Manage Postcards
     public function manage() {       
-        return view('postcards.manage', ['postcards' => Postcard::paginate(6)]);
+        return view('postcards.manage', [
+            'postcards' => Postcard::latest()->filter(request(['search']))
+                        ->paginate(5)
+            ]);
     }
     
 }
