@@ -26,7 +26,7 @@ class PostcardController extends Controller
                     ->where('is_draft', '=', $isDraft)
                     ->where((Carbon::parse(date('Y-m-d H:s:i', strtotime('online_at')))
                     ->diffInSeconds(Carbon::parse(date('Y-m-d H:s:i', strtotime('offline_at'))), false)), '>=', '0')
-                    ->paginate(6)
+                    ->paginate(5)
         ]);
          
     }
@@ -114,7 +114,10 @@ class PostcardController extends Controller
 
     // Manage Postcards
     public function manage() {       
-        return view('postcards.manage', ['postcards' => Postcard::paginate(6)]);
+        return view('postcards.manage', [
+            'postcards' => Postcard::latest()->filter(request(['search']))
+                        ->paginate(5)
+            ]);
     }
     
 }
