@@ -11,11 +11,15 @@ class PaginationTest extends TestCase
     /**
      * A basic feature test example.
      */
-    public function test_pagination(): void
-    {
-        $response = $this->visit('/postcards.show/');
-                        //->see('1');
 
-        //$response->assertStatus(200);
+    public function test_pagination_home_page(): void
+    {
+        $response = $this->visit('/')
+                    ->click('/?page=2')
+                    ->seePageIs('/?page=2');
+                    //$response->see('/?page=2');
+
+        $response->assertStatus(200);        
+
     }
 }
