@@ -26,6 +26,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //app()->bind(LengthAwarePaginator::class, CustomLengthAwarePaginator::class);
-                
+
     }
 }
