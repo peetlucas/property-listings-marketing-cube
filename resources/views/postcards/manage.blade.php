@@ -26,7 +26,7 @@
         <tr class="border-gray-300">          
           <td class="px-4 py-4 border-t border-b border-gray-300 text-lg">
             <div class="flex">
-              <div><img class="hidden w-48 mr-6 md:block"
+              <div><img class="hidden w-48 mr-6 md:block rounded-l-lg"
               src="{{$postcard->photo ? asset('storage/' . $postcard->photo) : 'https://picsum.photos/400/200?random=' . $postcard->id }}" alt="" />
               </div>
               <div>

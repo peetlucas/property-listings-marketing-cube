@@ -8,6 +8,9 @@ use App\Models\Postcard;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\abort;
+use Illuminate\Support\Facades\Redirect;
 
 use Carbon\Carbon;
 
@@ -70,30 +73,37 @@ class PostcardController extends Controller
      */
     public function show(Postcard $postcard)
     {
+        //Check that resource is online
         $online = Postcard::where((Carbon::parse(date('Y-m-d H:s:i', strtotime('online_at')))
-                    ->diffInSeconds(Carbon::parse(date('Y-m-d H:s:i', strtotime('offline_at'))), false)), '>=', '0')
-                    ->paginate(10);   
+                    ->diffInSeconds(Carbon::parse(date('Y-m-d H:s:i', strtotime('offline_at'))), false)), '>=', '0');   
 
-         $model = Postcard::onlyTrashed()      
-                ->where('id', $postcard)
-                ->get();
+        if($online == "[]"){
+            $online = "";
+        }
+
+        //Confirm postcard not deleted
+        $model = Postcard::onlyTrashed()      
+                    ->where('id', '=', $postcard->id)
+                    ->get();
+        if($model == "[]"){
+            $model = "";
+        }
+
+        //Get postcard schema
+        $product = Postcard::findOrFail($postcard->id);
+        $schema = $product->getSchema();        
         
-         if (!$online) {
-            return redirect('/')->with('message', 'Resource is offline!');
-         } else if(!$model){
-            return redirect('/')->with('message', 'Resource deleted!');       
-         }
+        if($online == ""){
+            abort_if(!$online, response(Redirect::to('/')
+                ->with('message', '410, Resource is offline!'), 410));
+        }
 
-         return view('postcards.show', compact('postcard'));
+        if($model != ""){
+            abort_if($model, response(Redirect::to('/')
+                ->with('message', '301, Postcard unavailable!'), 301));                     
+        }
 
-        //abort_if(!$online, redirect('/', 410)->with('message', '410, Resource is offline!'));
-              
-        // if (!$model) {
-        //     return view('postcards.show', compact('postcard'));
-        // } else{           
-        //     return redirect('/')->with('message', 'Resource deleted!');
-        // }
-        // abort_if($model->trashed(), redirect('/', 301));    
+        return view('postcards.show', compact('postcard', 'schema'));         
     }
 
     // Update Postcard Data
@@ -130,6 +140,6 @@ class PostcardController extends Controller
             'postcards' => Postcard::latest()->filter(request(['search']))
                         ->paginate(5)
             ]);
-    }
-    
+    }    
+
 }

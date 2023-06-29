@@ -5,17 +5,36 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\Postcard;
+use App\Models\User;
 
 class PaginationTest extends TestCase
 {
     /**
      * A basic feature test example.
      */
+    use RefreshDatabase;
+
     public function test_pagination(): void
     {
-        $response = $this->visit('/postcards.show/');
-                        //->see('1');
+        // Create dummy posts
+        Postcard::factory()->count(25)->create();
+        $this->actingAs($user = User::factory()->create());
+        //Postcard::factory()->create();
 
-        //$response->assertStatus(200);
+        // Make a GET request to the homepage
+        $response = $this->get('/');
+
+        // Assert that the response has a successful status code
+        $response->assertStatus(200);
+
+        // Assert that the response contains the pagination link for a specific page
+        $response->assertSee('http://127.0.0.1:8000?page=2'); 
+
+        // Make a GET request to page=2
+        $response = $this->get('http://127.0.0.1:8000?page=2');        
+
+        // Assert that the response contains the pagination link for a specific page
+        $response->assertSee('http://127.0.0.1:8000'); 
     }
 }

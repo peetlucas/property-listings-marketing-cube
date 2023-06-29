@@ -4,9 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-  
-    "content-hash": "34856066540014f2418cfe62dde92c30",
-
+    "content-hash": "8d2ddec4e8a3a4215aff46bebf137822",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -3824,19 +3822,18 @@
             ],
             "time": "2023-01-12T18:13:24+00:00"
         },
-        {           
-            "name": "spatie/schema-org",
-            "version": "3.14.0",
+        {
+            "name": "spatie/browsershot",
+            "version": "3.57.7",
             "source": {
                 "type": "git",
-                "url": "https://github.com/spatie/schema-org.git",
-                "reference": "ada9f696ae958236d6707caced77b2630185bb76"
+                "url": "https://github.com/spatie/browsershot.git",
+                "reference": "83332d0821bd3d61c03873d76d5dfff6e31985b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/schema-org/zipball/ada9f696ae958236d6707caced77b2630185bb76",
-                "reference": "ada9f696ae958236d6707caced77b2630185bb76",
-
+                "url": "https://api.github.com/repos/spatie/browsershot/zipball/83332d0821bd3d61c03873d76d5dfff6e31985b7",
+                "reference": "83332d0821bd3d61c03873d76d5dfff6e31985b7",
                 "shasum": ""
             },
             "require": {
@@ -3845,24 +3842,15 @@
                 "spatie/image": "^1.5.3|^2.0",
                 "spatie/temporary-directory": "^1.1|^2.0",
                 "symfony/process": "^4.2|^5.0|^6.0"
-            },          
+            },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^3.6",
-                "graham-campbell/analyzer": "^3.0.5",
-                "illuminate/collections": "^8.62.0",
-                "league/flysystem": "^2.3.0 || ^3.0",
-                "pestphp/pest": "^1.21",
-                "symfony/console": "^5.3.7 || 6.0",
-                "twig/twig": "^3.3.3",
-                "spatie/phpunit-snapshot-assertions": "^4.2.3",
-                "php": "^8.0"
+                "pestphp/pest": "^1.20",
+                "spatie/phpunit-snapshot-assertions": "^4.2.3"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Spatie\\Browsershot\\": "src",
-                    "Spatie\\SchemaOrg\\": "src"
-
+                    "Spatie\\Browsershot\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3877,39 +3865,28 @@
                     "role": "Developer"
                 }
             ],
-           
-            "funding": [
-                {
-                    "name": "Sebastian De Deyne",
-                    "email": "sebastian@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Tom Witkowski",
-                    "email": "dev.gummibeer@gmail.com",
-                    "homepage": "https://gummibeer.de",
-                    "role": "Developer"
-                },
-                {
-                    "url": "https://spatie.be/open-source/support-us",
-                    "type": "custom"
-                },
-                {
-                  "url": "https://github.com/spatie",
-                    "type": "github"
-                }               
-            ],
-            "description": "A fluent builder Schema.org types and ld+json generator",
-            "homepage": "https://github.com/spatie/schema-org",
+            "description": "Convert a webpage to an image or pdf using headless Chrome",
+            "homepage": "https://github.com/spatie/browsershot",
             "keywords": [
-                "schema-org",
-                "spatie"
+                "chrome",
+                "convert",
+                "headless",
+                "image",
+                "pdf",
+                "puppeteer",
+                "screenshot",
+                "webpage"
             ],
             "support": {
-                "issues": "https://github.com/spatie/schema-org/issues",
-                "source": "https://github.com/spatie/schema-org/tree/3.14.0"
-            }          
+                "source": "https://github.com/spatie/browsershot/tree/3.57.7"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-06-08T18:27:05+00:00"
         },
         {
             "name": "spatie/crawler",
@@ -3980,74 +3957,6 @@
                 }
             ],
             "time": "2023-06-08T18:27:05+00:00"
-        },
-        {
-            "name": "spatie/crawler",
-            "version": "7.1.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/crawler.git",
-                "reference": "f0f73947fdfaf68efdc68b73c4dbb28dfc785113"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/crawler/zipball/f0f73947fdfaf68efdc68b73c4dbb28dfc785113",
-                "reference": "f0f73947fdfaf68efdc68b73c4dbb28dfc785113",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/guzzle": "^7.3",
-                "guzzlehttp/psr7": "^2.0",
-                "illuminate/collections": "^8.38|^9.0|^10.0",
-                "nicmart/tree": "^0.3.0",
-                "php": "^8.0",
-                "spatie/browsershot": "^3.45",
-                "spatie/robots-txt": "^2.0",
-                "symfony/dom-crawler": "^5.2|^6.0"
-            },
-            "require-dev": {
-                "pestphp/pest": "^1.21",
-                "phpunit/phpunit": "^9.5"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\Crawler\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be"
-                }
-            ],
-            "description": "Crawl all internal links found on a website",
-            "homepage": "https://github.com/spatie/crawler",
-            "keywords": [
-                "crawler",
-                "link",
-                "spatie",
-                "website"
-            ],
-            "support": {
-                "issues": "https://github.com/spatie/crawler/issues",
-                "source": "https://github.com/spatie/crawler/tree/7.1.3"
-            },
-            "funding": [
-                {
-                    "url": "https://spatie.be/open-source/support-us",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/spatie",
-                    "type": "github"
-                }
-            ],
-            "time": "2023-01-24T07:47:06+00:00"
         },
         {
             "name": "spatie/image",
@@ -4367,6 +4276,79 @@
                 }
             ],
             "time": "2022-05-18T15:14:21+00:00"
+        },
+        {
+            "name": "spatie/schema-org",
+            "version": "3.14.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/schema-org.git",
+                "reference": "ada9f696ae958236d6707caced77b2630185bb76"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/schema-org/zipball/ada9f696ae958236d6707caced77b2630185bb76",
+                "reference": "ada9f696ae958236d6707caced77b2630185bb76",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.6",
+                "graham-campbell/analyzer": "^3.0.5",
+                "illuminate/collections": "^8.62.0",
+                "league/flysystem": "^2.3.0 || ^3.0",
+                "pestphp/pest": "^1.21",
+                "symfony/console": "^5.3.7 || 6.0",
+                "twig/twig": "^3.3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\SchemaOrg\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian De Deyne",
+                    "email": "sebastian@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Tom Witkowski",
+                    "email": "dev.gummibeer@gmail.com",
+                    "homepage": "https://gummibeer.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A fluent builder Schema.org types and ld+json generator",
+            "homepage": "https://github.com/spatie/schema-org",
+            "keywords": [
+                "schema-org",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/schema-org/issues",
+                "source": "https://github.com/spatie/schema-org/tree/3.14.0"
+            },
+            "funding": [
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-02-14T16:46:30+00:00"
         },
         {
             "name": "spatie/temporary-directory",

@@ -1,6 +1,6 @@
 <x-layout> 
 	<div class="mx-4">
-	 <a href="/postcards/manage" class="inline-block text-black ml-4 mb-4"><i class="fa-solid fa-arrow-left"></i> Back
+	 <a href="/" class="inline-block text-black ml-4 mb-4"><i class="fa-solid fa-arrow-left"></i> Back
   	</a>
 	    <!-- Page heading -->
 	    <header class="bg-gray-50 py-8">
@@ -23,14 +23,14 @@
 	              </li>
 	            </ol>
 	          </nav>
-	          <h1 class="mt-2 text-xl font-bold leading-7 text-gray-900 sm:truncate sm:text-2xl sm:tracking-tight">Property Details</h1>
+	          <h1 class="mt-2 text-xl font-bold leading-7 text-gray-900 sm:truncate sm:text-2xl sm:tracking-tight">Postcard Details</h1>
 	        </div>
 
 	      </div>
 	    </header>
 		<x-card class="p-10">
 		<div class="flex">
-			<img class="hidden w-48 mr-6 md:block"
+			<img class="hidden w-48 mr-6 md:block rounded-l-lg"
 			src="{{$postcard->photo ? asset('storage/' . $postcard->photo) : 'https://picsum.photos/400/200?random=' . $postcard->id }}" alt="" />
 			<div>
 				<h1 class="text-2xl font-bold text-gray-900">{{ $postcard->title }}</h1>
@@ -46,7 +46,7 @@
       <div class="flex flex-col items-center justify-center text-center">     
         
         <div>
-          <h3 class="text-3xl font-bold mb-4">Property Description</h3>
+          <h3 class="text-3xl font-bold mb-4">Postcard Description</h3>
           <div class="text-lg space-y-6">
            
 
@@ -63,15 +63,7 @@
       </div>
     </x-card>    
   </div>
-  		<script type="application/ld+json">
-      {
-        "@context":"https://schema.org/",
-        "@type":"Product",
-        "title":"Kilimani Residential Apartment",
-        "author":"Peter Shitote",
-        "datePosted" : "2023-06-13",
-        "validThrough" : "2023-06-16",
-        "price":26500000,
-      }
-		</script>
+
+  {{-- Output the schema as a JSON-LD script --}}
+  {!! $schema !!}  		
 </x-layout>
