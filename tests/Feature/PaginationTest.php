@@ -37,5 +37,6 @@ class PaginationTest extends TestCase
         // Assert that the response contains the pagination link for a specific page
         $response->assertSee('http://localhost/'); 
 
+
     }
 }
