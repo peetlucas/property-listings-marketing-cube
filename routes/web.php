@@ -41,6 +41,9 @@ Route::controller(PostcardController::class)->group(function () {
     
     // Single Postcard   
     Route::get('/postcards/{postcard}', 'show')->name('postcards.show');
+
+    //410 Error Page 
+    Route::get('/errors/410', [PostcardController::class, '410'])->name('errors.410');
 });
 
 Route::middleware([

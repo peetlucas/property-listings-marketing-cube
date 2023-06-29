@@ -2,7 +2,7 @@
 
 <x-card>
   <div class="flex">
-    <img class="hidden w-48 mr-6 md:block"
+    <img class="hidden w-48 mr-6 md:block rounded-l-lg"
       src="{{$postcard->photo ? asset('storage/' . $postcard->photo) : 'https://picsum.photos/400/200?random=' . $postcard->id }}" alt="" />
     <div>
       <h3 class="text-2xl">

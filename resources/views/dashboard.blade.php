@@ -9,17 +9,17 @@
     <table class="w-full table-auto rounded-sm">
       <tbody>       
         <tr class="border-gray-300">
-          <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
-            <a href="/postcards/manage" class="mr-1 bg-pink-800 text-right text-white py-8 px-6"><i class="fa-solid fa-image">  Postcards</i></a>
+          <td class="px-4 py-8 border-t border-b border-gray-300 text-lg ">
+            <a href="/postcards/manage" class="mr-1 bg-pink-800 text-right rounded-l-xl text-white py-8 px-6"><i class="fa-solid fa-image">  Postcards</i></a>
           </td>
           <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
-            <a href="#" class="mr-1 bg-blue-700 text-right text-white py-8 px-12"><i class="fa-solid fa-people-group"> Teams</i></a>
+            <a href="#" class="mr-1 bg-blue-700 text-right rounded-l-xl text-white py-8 px-12"><i class="fa-solid fa-people-group"> Teams</i></a>
           </td>
           <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
-            <a href="#" class="mr-1 bg-orange-700 text-right text-white py-8 px-16"><i class="fa-solid fa-user"> Users</i></a>
+            <a href="#" class="mr-1 bg-orange-700 text-right rounded-r-xl text-white py-8 px-16"><i class="fa-solid fa-user"> Users</i></a>
           </td>
           <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
-            <a href="#" class="mr-1 bg-green-700 text-right text-white py-8 px-12"><i class="fa-solid fa-envelope"> Emails</i></a>
+            <a href="#" class="mr-1 bg-green-700 text-right rounded-r-xl text-white py-8 px-12"><i class="fa-solid fa-envelope"> Emails</i></a>
           </td>
         </tr>          
       </tbody>
