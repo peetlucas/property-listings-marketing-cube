@@ -29,13 +29,13 @@ class PaginationTest extends TestCase
         $response->assertStatus(200);
 
         // Assert that the response contains the pagination link for a specific page
-        $response->assertSee('?page=2'); 
+        $response->assertSee('http://localhost?page=2'); 
 
         // Make a GET request to page=2
         $response = $this->get('?page=2');        
 
         // Assert that the response contains the pagination link for a specific page
-        $response->assertSee('/'); 
+        $response->assertSee('http://localhost/'); 
 
     }
 }
