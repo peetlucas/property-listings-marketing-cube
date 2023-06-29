@@ -13,7 +13,7 @@
           <link rel="next" href="{{ $postcards->nextPageUrl() }}" /> 
         @endif
       @endif  
-     
+
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 xl:flex xl:items-center xl:justify-between">
         <div class="min-w-0 flex-1">
           <nav class="flex" aria-label="Breadcrumb">
