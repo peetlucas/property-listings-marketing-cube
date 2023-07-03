@@ -15,9 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(LengthAwarePaginatorContract::class, function ($app, $items, $total, $perPage, $currentPage, $options) {
-        return new CustomLengthAwarePaginator($items, $total, $perPage, $currentPage, $options);
-        });
+        $this->app->bind(LengthAwarePaginator::class, CustomLengthAwarePaginator::class); 
     }
 
     /**
@@ -25,7 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //app()->bind(LengthAwarePaginator::class, CustomLengthAwarePaginator::class);
-
+        //
     }
 }
